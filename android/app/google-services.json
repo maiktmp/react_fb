@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "602001500230",
+    "firebase_url": "https://react-firebase-50308.firebaseio.com",
+    "project_id": "react-firebase-50308",
+    "storage_bucket": "react-firebase-50308.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602001500230:android:d38f9d22fe066140",
+        "android_client_info": {
+          "package_name": "com.react_fb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "602001500230-p085ou57bf9fpg1i4dp8nuikbb8m2vin.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4mSBeRVywRgxX3phhD_rux06aQUQNqBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "602001500230-p085ou57bf9fpg1i4dp8nuikbb8m2vin.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
