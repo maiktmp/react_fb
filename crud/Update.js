@@ -5,14 +5,14 @@ import {Table, TableWrapper, Row, Rows, Col, Cols, Cell} from 'react-native-tabl
 import * as firebase from 'firebase';
 import {container} from '../styles/style';
 
-class Create extends React.Component {
-  static navigationOptions = {
-    title: 'Crear',
-  };
+class Update extends React.Component {
+  static navigationOptions = () => ({
+    title: 'Actualizar',
+  });
 
   constructor(props) {
     super(props);
-    this.onCreateSubject = this.onCreateSubject.bind(this);
+    this.onUpdateSubject = this.onUpdateSubject.bind(this);
     if (!firebase.apps.length) {
       const firebaseConfig = {
         apiKey: 'AIzaSyBACjCDT5Yk8PbwMQI3zvMwOT2BoC8Ax6U',
@@ -25,9 +25,13 @@ class Create extends React.Component {
       };
       firebase.initializeApp(firebaseConfig);
     }
+    console.log(this.props.navigation.getParam('id'));
+    console.log(this.props.navigation.getParam('name'));
+    console.log(this.props.navigation.getParam('teacher'));
     this.state = {
-      name: undefined,
-      teacher: undefined,
+      id: this.props.navigation.getParam('id'),
+      name: this.props.navigation.getParam('name'),
+      teacher: this.props.navigation.getParam('teacher'),
     };
   }
 
@@ -35,12 +39,23 @@ class Create extends React.Component {
 
   }
 
-  onCreateSubject() {
+  onUpdateSubject() {
     if (this.state.name === undefined || this.state.teacher === undefined) {
       return null;
     }
-    const ref = firebase.database().ref('/school/subject/');
-    ref.push({'name': this.state.name, 'teacher': this.state.teacher});
+    firebase.database().ref('/school/subject/' + this.state.id).set(
+      {
+        name: this.state.name,
+        teacher: this.state.teacher,
+      },
+      (error) => {
+        if (error) {
+          console.log(error);
+        } else {
+          const {goBack} = this.props.navigation;
+          goBack();
+        }
+      });
   }
 
 
@@ -49,22 +64,24 @@ class Create extends React.Component {
       <View style={container}>
         <TextField
           label='Nombre'
+          value={this.state.name}
           onChangeText={(name) => this.setState({name: name})}
         />
 
         <TextField
           label='Profesor'
+          value={this.state.teacher}
           onChangeText={(teacher) => this.setState({teacher: teacher})}
         />
 
         <Button
-          title="CREAR"
+          title="ACTUALIZAR"
           color={'#32c6e1'}
-          onPress={this.onCreateSubject}
+          onPress={this.onUpdateSubject}
         />
       </View>
     );
   }
 }
 
-export default Create;
+export default Update;

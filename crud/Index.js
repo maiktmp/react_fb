@@ -53,7 +53,7 @@ class Index extends React.Component {
   onRemoveItem(id) {
     firebase.database().ref('/school/subject/' + id).set(
       null,
-      function (error) {
+      function(error) {
         if (error) {
           console.log(error);
         } else {
@@ -76,11 +76,15 @@ class Index extends React.Component {
           onPress={e => this.onRemoveItem(subject.id)}>
           Eliminar</Icon.Button>
         <Icon.Button
-          name="md-trash"
-          color="#FF0C00"
+          name="md-create"
+          color={'#3ead03'}
           size={25}
           backgroundColor={'#FFFF'}
-          onPress={e => console.log(subject.id)}>
+          onPress={e => this.props.navigation.push('Update', {
+            id: subject.id,
+            name: subject.name,
+            teacher: subject.teacher,
+          })}>
           Actualziar</Icon.Button>
       </React.Fragment>,
     ]);
@@ -95,7 +99,6 @@ class Index extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Listar</Text>
         {this.renderTable()}
       </View>
     );
