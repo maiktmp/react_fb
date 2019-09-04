@@ -1,4 +1,4 @@
-import {NavigationActions} from 'react-navigation';
+import {NavigationActions, StackActions} from 'react-navigation';
 
 let _navigator;
 
@@ -16,8 +16,8 @@ function navigate(routeName, params) {
   );
 }
 
-function goBack() {
-  _navigator.back();
+function goBack(route) {
+
 }
 
 // add other navigation functions that you need and export them

@@ -85,7 +85,7 @@ class Index extends React.Component {
             name: subject.name,
             teacher: subject.teacher,
           })}>
-          Actualziar</Icon.Button>
+          Actualizar</Icon.Button>
       </React.Fragment>,
     ]);
     return (

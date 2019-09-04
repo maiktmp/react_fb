@@ -13,6 +13,7 @@ import _useFb from '../fb_conf';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
 import {color} from 'react-native-reanimated';
+import NavigationService from '../NavigationService';
 
 
 class Login extends React.Component {
@@ -36,11 +37,15 @@ class Login extends React.Component {
     };
   }
 
+
+
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
       console.log('try_log');
       if (user !== null) {
         this.onContinue();
+      } else {
+
       }
     });
   }
@@ -104,6 +109,7 @@ const _toolbarConfig = () => ({
       backgroundColor={'rgba(255,255,255,0)'}
       onPress={e => {
         firebase.auth().signOut();
+        NavigationService.navigate('Login');
       }}/>
   ),
 });
@@ -159,5 +165,17 @@ const AppNavigator = createStackNavigator({
     initialRouteName: 'Login',
     headerMode: 'none',
   });
+const AppContainer = createAppContainer(AppNavigator);
 
-export default createAppContainer(AppNavigator);
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppContainer
+        ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    );
+  }
+}
+// export default createAppContainer(AppNavigator);

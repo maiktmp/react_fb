@@ -4,6 +4,7 @@ import {TextField} from 'react-native-material-textfield';
 import {Table, TableWrapper, Row, Rows, Col, Cols, Cell} from 'react-native-table-component';
 import * as firebase from 'firebase';
 import {container} from '../styles/style';
+import {Alert} from 'react-native';
 
 class Create extends React.Component {
   static navigationOptions = {
@@ -31,16 +32,20 @@ class Create extends React.Component {
     };
   }
 
-  componentDidMount(): void {
-
-  }
-
   onCreateSubject() {
     if (this.state.name === undefined || this.state.teacher === undefined) {
       return null;
     }
     const ref = firebase.database().ref('/school/subject/');
     ref.push({'name': this.state.name, 'teacher': this.state.teacher});
+    this.setState({
+      name: '',
+      teacher: '',
+    });
+    Alert.alert(
+      'Aviso',
+      'Grupo Creado correctamente',
+    );
   }
 
 
@@ -49,11 +54,13 @@ class Create extends React.Component {
       <View style={container}>
         <TextField
           label='Nombre'
+          value={this.state.name}
           onChangeText={(name) => this.setState({name: name})}
         />
 
         <TextField
           label='Profesor'
+          value={this.state.teacher}
           onChangeText={(teacher) => this.setState({teacher: teacher})}
         />
 
