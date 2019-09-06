@@ -4,7 +4,6 @@ import {TextField} from 'react-native-material-textfield';
 import {container} from '../styles/style.js';
 import {createAppContainer, NavigationActions, StackActions} from 'react-navigation';
 import createStackNavigator from 'react-navigation-stack/src/navigators/createStackNavigator';
-import {BottomTabBar, createBottomTabNavigator} from 'react-navigation-tabs';
 import Create from '../crud/Create';
 import Index from '../crud/Index';
 import Update from '../crud/Update';
@@ -12,7 +11,6 @@ import * as firebase from 'firebase';
 import _useFb from '../fb_conf';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import {color} from 'react-native-reanimated';
 import NavigationService from '../NavigationService';
 
 
@@ -45,6 +43,7 @@ class Login extends React.Component {
       if (user !== null) {
         this.onContinue();
       } else {
+      //
 
       }
     });
